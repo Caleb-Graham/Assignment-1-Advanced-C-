@@ -7,12 +7,13 @@ internal class Player
         {
         }
 
-    public string Name { get; set; }
-    public int Strength { get; set; }
+    public virtual string Name { get; set; }    // Add Virtual keyword
+    public virtual int Strength { get; set; }   // Add Virtual keyword
 
-    internal void Attack()
+    internal virtual void Attack()  // Add Virtual keyword
         {
-        throw new NotImplementedException();
+        Random rand = new Random();
+        Console.WriteLine($"{Name} attacked for " + rand.Next(Strength + 1) + " damage.");
         }
     }
 
@@ -23,10 +24,17 @@ internal class Warrior : Player
         {
         }
 
-    public string Name { get; set; }
-    public int Strength { get; set; }
+    public override string Name { get; set; }   // Add Override keyword
+    public override int Strength { get; set; }  // Add Override keyword
     public int Bonus { get; set; }
-}
+
+    internal override void Attack() // Add Override keyword
+        {
+        Random rand = new Random();
+        Console.WriteLine($"{Name} charges for " + rand.Next(Strength + 1) + " damage" + 
+            "(inclueds +" + rand.Next(Bonus + 1) + " bonus).");
+        }
+    }
 
 
 internal class Wizard : Player
@@ -35,10 +43,19 @@ internal class Wizard : Player
         {
         }
 
-    public string Name { get; set; }
-    public int Strength { get; set; }
+    public override string Name { get; set; }   // Add Override keyword
+    public override int Strength { get; set; }  // Add Override keyword
     public int Energy { get; set; }
+
+    internal override void Attack() // Add Override keyword
+        {
+        Random rand = new Random();
+        Console.WriteLine($"{Name} attacked for " + rand.Next(Strength + 1) + " damage." +
+            "\n" + "    (Wizard " + Name + " depleted " + rand.Next(Energy + 1) + " energy).");
+        }
     }
+
+  
 
 
 
