@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 internal class Player
     {
     public Player()
@@ -12,8 +11,8 @@ internal class Player
 
     internal virtual void Attack()  // Add Virtual keyword
         {
-        Random rand = new Random();
-        Console.WriteLine($"{Name} attacked for " + rand.Next(Strength + 1) + " damage.");
+        Random rand = new Random();     // Instantiate rand of Random class
+        Console.WriteLine($"{Name} attacked for " + rand.Next(Strength + 1) + " damage.");  // Use rand to call a number between 0 and Strength
         }
     }
 

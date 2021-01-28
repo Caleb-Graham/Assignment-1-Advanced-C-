@@ -91,7 +91,6 @@ namespace Homework_Template
 
         private static void DoExe2()
             {
-
             var player = new Player() { Name = "Bob", Strength = 20 };
             var warrior = new Warrior() { Name = "Baltek", Strength = 100, Bonus = 10 };
             var wizard = new Wizard() { Name = "Pentagorn", Strength = 50, Energy = 50 };
@@ -104,9 +103,7 @@ namespace Homework_Template
             DoBattle(players);
 
             Console.ReadLine();
-
             }
-
         static void DoBattle(List<Player> players)
             {
             foreach (var player in players)
@@ -119,11 +116,137 @@ namespace Homework_Template
 
         private static void DoExe3()
             {
-            // Add code for Exercise 3 here
-            // Remove "throw new NotImplementedException()" line of code 
-            //  once you add your code.
-            throw new NotImplementedException();
+
+            var appointment = new Appointment()
+                {
+                Name = "Bob",
+                StartDateTime = DateTime.Now.AddHours(1),
+                EndDateTime = DateTime.Now.AddHours(2),
+                Price = 100D
+                };
+
+            var book = new Book()
+                {
+                Title = "How to Implement Interfaces",
+                Price = 50D,
+                TaxRate = 0.0825D,
+                ShippingRate = 5D   // Added to give book instance access to 
+                };
+
+            var snack = new Snack()
+                {
+                Price = 2D
+                };
+
+            var tshirt = new TShirt()
+                {
+                Size = "2X",
+                Price = 25D,
+                TaxRate = 0.0625D,
+                ShippingRate = 2D   // Added
+                };
+
+            var items = new List<IPurchasable>();
+            items.Add(appointment);
+            items.Add(book);
+            items.Add(snack);
+            items.Add(tshirt);
+
+            var taxableItems = new List<ITaxable>();
+            foreach (var item in items)
+                {
+                if (item is ITaxable)
+                    {
+                    taxableItems.Add(item as ITaxable);
+                    }
+                }
+            var taxAmount = CalculateTax(taxableItems);
+            Console.WriteLine($"Total tax amount: ${taxAmount.ToString("0.00")}");  // Converts taxAmount to a string with two decimal places
+            Console.WriteLine("");  // Spaceing 
+
+
+
+            // Checks if items are shippable
+            var shippableItems = new List<IShippable>();
+            foreach (var item in items)
+                {
+                if (item is IShippable)
+                    {
+                    shippableItems.Add(item as IShippable);
+                    }
+                }
+
+            var shippingAmount = CalculateShipping(shippableItems);
+            Console.WriteLine($"Total shipping amount: ${shippingAmount.ToString("0.00")}");    // Converts shippingAmount to a string with two decimal places
+            Console.WriteLine("");
+
+
+            var p = new List<IPurchasable>();
+            foreach (var item in items)
+                {
+                if (item is IShippable)
+                    {
+                    p.Add(item as IPurchasable);
+                    }
+                }
+
+            var grandTotal = CalculatePrice(p);
+            CompleteTransaction(items);
+            Console.WriteLine("==================");
+            //Console.WriteLine("Grand Total: $" + grandTotal + shippingAmount.ToString("0.00") + taxAmount.ToString("0.00"));
+            Console.WriteLine(grandTotal);
+            Console.WriteLine(shippingAmount.ToString("0.00"));
+            Console.WriteLine(taxAmount.ToString("0.00"));
+
+
+            Console.ReadLine();
             }
+
+        static double CalculateTax(List<ITaxable> items)
+            {
+            double tax = 0D;
+
+            foreach (var item in items)
+                {
+                tax += item.Tax();
+                }
+
+            return tax;
+            }
+
+        static double CalculateShipping(List<IShippable> items)
+            {
+            double shipping = 0D;
+
+            foreach (var item in items)
+                {
+                shipping += item.Ship();
+                }
+
+            return shipping;
+            }
+
+
+        static double CalculatePrice(List<IPurchasable> items)
+            {
+            double price = 0D;
+
+            foreach (var item in items)
+                {
+                price += item.Purchase();
+                }
+
+            return price;
+            }
+
+
+        static void CompleteTransaction(List<IPurchasable> items)
+            {
+            items.ForEach(p => p.Purchase());
+            }
+
+
+        
 
         private static void DoExe4()
             {
