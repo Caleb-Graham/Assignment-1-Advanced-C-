@@ -34,7 +34,7 @@ public class Appointment : IPurchasable
         }
     }
 
-public class Book : IPurchasable, ITaxable  // Added IShippable to give access to 
+public class Book : IPurchasable, ITaxable, IShippable  // Added IShippable to give access to ShippingRate
     {
     public string Title { get; set; }
     public double Price { get; set; }
@@ -63,7 +63,7 @@ public class Book : IPurchasable, ITaxable  // Added IShippable to give access t
 
     }
 
-public class TShirt : IPurchasable, ITaxable, IShippable
+public class TShirt : IPurchasable, ITaxable, IShippable    // Added IShippable to give access to ShippingRate
     {
     public double Price { get; set; }
     public string Size { get; set; }
