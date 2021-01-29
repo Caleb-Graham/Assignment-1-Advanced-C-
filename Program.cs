@@ -180,24 +180,19 @@ namespace Homework_Template
             Console.WriteLine($"Total shipping amount: ${shippingAmount.ToString("0.00")}");    // Converts shippingAmount to a string with two decimal places
             Console.WriteLine("");
 
+            double totalPurchasePrice = CalculatePrice(items);
+          
 
-            var p = new List<IPurchasable>();
-            foreach (var item in items)
-                {
-                if (item is IShippable)
-                    {
-                    p.Add(item as IPurchasable);
-                    }
-                }
+            //CompleteTransaction(items);
 
-            var grandTotal = CalculatePrice(p);
-            CompleteTransaction(items);
+
             Console.WriteLine("==================");
-            //Console.WriteLine("Grand Total: $" + grandTotal + shippingAmount.ToString("0.00") + taxAmount.ToString("0.00"));
-            Console.WriteLine(grandTotal);
-            Console.WriteLine(shippingAmount.ToString("0.00"));
-            Console.WriteLine(taxAmount.ToString("0.00"));
+            double grandTotal = shippingAmount + taxAmount + totalPurchasePrice;
+            Console.WriteLine("Grand Total: $" + Math.Round(grandTotal, 2));
 
+            Console.WriteLine("");
+            double a = tshirt.Price + book.Price + appointment.Price + snack.Price;
+            Console.WriteLine(a);
 
             Console.ReadLine();
             }
