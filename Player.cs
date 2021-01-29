@@ -2,7 +2,7 @@
 
 internal class Player
     {
-    public Player()
+    public Player() // Parent Class
         {
         }
 
@@ -17,7 +17,7 @@ internal class Player
     }
 
 
-internal class Warrior : Player
+internal class Warrior : Player   // Child class
     {
     public Warrior()
         {
@@ -27,16 +27,16 @@ internal class Warrior : Player
     public override int Strength { get; set; }  // Add Override keyword
     public int Bonus { get; set; }
 
-    internal override void Attack() // Add Override keyword
+    internal override void Attack() // Add Override keyword (Allows the same method to have different outputs thanks to polymorphism)
         {
         Random rand = new Random();
-        Console.WriteLine($"{Name} charges for " + rand.Next(Strength + 1) + " damage" + 
-            "(inclueds +" + rand.Next(Bonus + 1) + " bonus).");
+        Console.WriteLine($"{Name} charges for " + rand.Next(Strength + 1) + " damage" +   
+            "(includes +" + rand.Next(Bonus + 1) + " bonus).");
         }
     }
 
 
-internal class Wizard : Player
+internal class Wizard : Player   // Child class
     {
     public Wizard()
         {
@@ -50,7 +50,7 @@ internal class Wizard : Player
         {
         Random rand = new Random();
         Console.WriteLine($"{Name} attacked for " + rand.Next(Strength + 1) + " damage." +
-            "\n" + "    (Wizard " + Name + " depleted " + rand.Next(Energy + 1) + " energy).");
+            "\n" + "    (Wizard " + Name + " depleted " + rand.Next(1, 11) + " energy).");  // Depletes only between 1,10 damage as specified
         }
     }
 

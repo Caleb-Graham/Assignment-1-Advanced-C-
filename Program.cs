@@ -113,7 +113,6 @@ namespace Homework_Template
                 }
             }
 
-
         private static void DoExe3()
             {
 
@@ -143,7 +142,7 @@ namespace Homework_Template
                 Size = "2X",
                 Price = 25D,
                 TaxRate = 0.0625D,
-                ShippingRate = 2D   // Added
+                ShippingRate = 2D   // Added to give tshirt instance access to 
                 };
 
             var items = new List<IPurchasable>();
@@ -180,9 +179,8 @@ namespace Homework_Template
             Console.WriteLine($"Total shipping amount: ${shippingAmount.ToString("0.00")}");    // Converts shippingAmount to a string with two decimal places
             Console.WriteLine("");
 
-            double totalPurchasePrice = CalculatePrice(items);
-          
 
+            double totalPurchasePrice = CalculatePrice(items);
             //CompleteTransaction(items);
 
 
@@ -190,13 +188,12 @@ namespace Homework_Template
             double grandTotal = shippingAmount + taxAmount + totalPurchasePrice;
             Console.WriteLine("Grand Total: $" + Math.Round(grandTotal, 2));
 
-            Console.WriteLine("");
-            double a = tshirt.Price + book.Price + appointment.Price + snack.Price;
-            Console.WriteLine(a);
+
+            //double a = tshirt.Price + book.Price + appointment.Price + snack.Price;
+            //Console.WriteLine(a);
 
             Console.ReadLine();
             }
-
         static double CalculateTax(List<ITaxable> items)
             {
             double tax = 0D;
@@ -208,7 +205,6 @@ namespace Homework_Template
 
             return tax;
             }
-
         static double CalculateShipping(List<IShippable> items)
             {
             double shipping = 0D;
@@ -220,8 +216,6 @@ namespace Homework_Template
 
             return shipping;
             }
-
-
         static double CalculatePrice(List<IPurchasable> items)
             {
             double price = 0D;
@@ -233,8 +227,6 @@ namespace Homework_Template
 
             return price;
             }
-
-
         static void CompleteTransaction(List<IPurchasable> items)
             {
             items.ForEach(p => p.Purchase());
@@ -242,7 +234,6 @@ namespace Homework_Template
 
 
         
-
         private static void DoExe4()
             {
             // Add code for Exercise 4 here

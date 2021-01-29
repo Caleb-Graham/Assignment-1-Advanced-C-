@@ -34,7 +34,7 @@ public class Appointment : IPurchasable
         }
     }
 
-public class Book : IPurchasable, ITaxable, IShippable
+public class Book : IPurchasable, ITaxable  // Added IShippable to give access to 
     {
     public string Title { get; set; }
     public double Price { get; set; }
